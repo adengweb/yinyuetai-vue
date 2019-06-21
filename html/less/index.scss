@@ -1,0 +1,227 @@
+
+.mod-index{
+	.title{
+		height:43px;
+		padding-top: 22px;
+		.text{
+			padding-left: 10px;
+			border-left: 2px solid #ff2c72;
+			font-size: 18px;
+		}
+	}
+
+	.starchaser{
+		float: left;
+		width: 870px;
+		ul{
+			margin-left: -16px;
+		}
+		li{
+			float: left;
+			padding-left: 16px;
+			a{
+				display: block;
+				text-align: center;
+			}
+		}
+	}
+	.signGoods{
+		float: right;
+		width: 300px;
+		padding-top: 35px;
+		img{
+			width: 100%;
+		}
+	}
+
+	.top{
+		.title{
+			position: relative;
+			text-align: center;
+			.text{
+				text-align: left;
+			}
+			.tabs{
+				margin-top: -20px;
+				a{
+					display: inline-block;
+					padding:0 16px;
+					margin:0 3px;
+					line-height:22px;
+					&.active{
+						color: #fff;
+						background: #F1368B;
+						border-radius: 11px;
+					}
+				}
+			}
+		}
+		.list{
+			margin-left: -16px;
+			.item{
+				float: left;
+				padding-left: 16px;
+				a{
+					position: relative;
+					display: block;
+					width: 136px;
+					height:180px;
+					overflow: hidden;
+					.top_i{
+						position: absolute;
+						left:0;
+						top:0;
+						sup{
+							position: absolute;
+							left:0;
+							top:0;
+							width: 20px;
+							text-align: center;
+							font-size: 20px;
+							line-height: 24px;
+							z-index: 1;
+						}
+						&:after{
+							content:'';
+							display: block;
+							width:0;
+					    height:0;
+					    margin-left: -20px;
+					    margin-top: -5px;
+					    border-width:0 30px 30px;
+					    border-style:solid;
+					    border-color:transparent transparent #FB91C1;
+					    transform: rotate(-45deg);
+						}
+					}
+					.info{
+						text-align: center;
+						p{
+							position: relative;
+							margin-top: -25px;
+							line-height: 22px;
+							margin-bottom: 6px;
+							color: #fff;
+							background: rgba(0,0,0,.5);
+						}
+						span{
+							font-weight: bold;
+						}
+					}
+				}
+				img{
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	.news{
+		.list{
+			margin-right: -11px;
+			.item{
+				float: left;
+		    width: 393px;
+		    height: 190px;
+		    margin: 0 10px 10px 0;
+				background: #fafafa;
+				img{
+					width: 100%;
+				}
+				a{
+					display: block;
+					overflow: hidden;
+					&:hover{
+						box-shadow:1px 1px 18px #ccc;
+					}
+				}
+				.pic{
+					float: left;
+			    width: 190px;
+			    height: 190px;
+				}
+				.info{
+					padding-left: 210px;
+					h4{
+						font-size: 14px;
+						color: #494c4d;
+						height:45px;
+					}
+					.price{
+						margin: 10px 0 13px;
+						font-size: 14px;
+						color: #ff437e;
+					}
+					.like{
+						color: #999;
+						span{
+							&:before{
+								content: '';
+								display: inline-block;
+						    margin-right: 5px;
+						    width: 13px;
+						    height: 10px;
+						    background: url(../img/ico.png) 0 -72px no-repeat;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.love{
+		padding-bottom: 40px;
+		.list{
+			margin-right: -11px;
+			.item{
+				float: left;
+		    width: 190px;
+		    height: 300px;
+		    margin-right: 12px;
+		    margin-bottom: 10px;
+		    padding: 15px 20px 0px;
+				background: #fafafa;
+				img{
+					width: 100%;
+				}
+				&:hover{
+					box-shadow:1px 1px 18px #ccc;
+				}
+				a{
+					display: block;
+					overflow: hidden;
+					
+				}
+				h4{
+					font-size: 14px;
+					color: #494c4d;
+					height:45px;
+				}
+				.info{
+					
+					.price{
+						display: inline-block;
+						font-size: 14px;
+						color: #ff437e;
+					}
+					.like{
+						float: right;
+						color: #999;
+						span{
+							padding-top: 4px;
+							&:before{
+								content: '';
+								display: inline-block;
+						    margin-right: 5px;
+						    width: 13px;
+						    height: 10px;
+						    background: url(../img/ico.png) 0 -72px no-repeat;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

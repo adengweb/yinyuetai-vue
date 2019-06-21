@@ -1,0 +1,327 @@
+/* adeng.y */
+@import url("http://at.alicdn.com/t/font_666153_hmsps0ryi6o.css");
+article,
+aside,
+blockquote,
+body,
+code,
+dd,
+details,
+div,
+dl,
+dt,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+input,
+legend,
+li,
+nav,
+ol,
+p,
+pre,
+section,
+td,
+textarea,
+th,
+ul {
+  margin: 0;
+  padding: 0; }
+
+html {
+  _text-overflow: ellipsis; }
+
+html,
+body {
+  color: #212121; }
+
+body,
+button,
+input,
+select,
+textarea {
+  font-size: 12px;
+  font-family: "Microsoft YaHei"; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: 400; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+fieldset,
+img {
+  border: 0; }
+
+em,
+i {
+  font-style: normal; }
+
+li {
+  list-style: none; }
+
+article,
+aside,
+figure,
+footer,
+header,
+nav,
+section {
+  display: block; }
+
+strong {
+  font-weight: 400; }
+
+button {
+  border: 0 none; }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 0;
+  background: #ccc; }
+
+::-webkit-scrollbar-thumb:vertical {
+  background: #999;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:vertical:hover {
+    background: #666; }
+
+input[type=radio],
+input[type=checkbox] {
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  bottom: 1px;
+  height: 14px;
+  position: relative;
+  vertical-align: middle;
+  width: 14px;
+  cursor: pointer; }
+
+a {
+  color: #222;
+  text-decoration: none; }
+  a:active {
+    background-color: transparent; }
+
+.clearfix {
+  *zoom: 1; }
+  .clearfix:after {
+    content: ".";
+    clear: both;
+    height: 0;
+    visibility: hidden;
+    display: block; }
+
+.tvh {
+  visibility: hidden; }
+
+.w {
+  width: 1200px;
+  margin: 0 auto; }
+
+.g-hide {
+  display: none; }
+
+.show {
+  display: block; }
+
+.g-mt10 {
+  margin-top: 10px; }
+
+.g-mt20 {
+  margin-top: 20px; }
+
+.footer {
+  position: relative;
+  padding: 40px 0 30px;
+  line-height: 22px;
+  color: #666666;
+  background: #000; }
+  .footer .link {
+    text-align: center; }
+    .footer .link a {
+      margin: 0 10px;
+      color: #999; }
+      .footer .link a:hover {
+        color: #52e2c0; }
+  .footer .copy {
+    padding-top: 10px;
+    text-align: center; }
+    .footer .copy .menu {
+      margin-bottom: 6px; }
+      .footer .copy .menu a {
+        padding: 0 5px; }
+
+.header {
+  color: #fff;
+  background: #1f2122; }
+  .header .set {
+    position: relative;
+    height: 126px; }
+    .header .set h1 {
+      position: absolute;
+      left: 20px;
+      top: 20px; }
+    .header .set .ucenter {
+      position: absolute;
+      right: 0;
+      bottom: 40px; }
+      .header .set .ucenter a {
+        padding: 2px 6px;
+        margin-left: 6px;
+        color: #fff; }
+        .header .set .ucenter a .iconfont {
+          padding-right: 3px; }
+        .header .set .ucenter a:hover {
+          color: #52e2c0; }
+      .header .set .ucenter .avatar {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        vertical-align: middle; }
+      .header .set .ucenter .u_name {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        vertical-align: middle;
+        margin-top: -5px; }
+        .header .set .ucenter .u_name .icon-unfold {
+          vertical-align: middle;
+          color: #ff2c72; }
+        .header .set .ucenter .u_name p {
+          position: absolute;
+          left: 0;
+          top: 24px;
+          padding: 0 6px;
+          width: 78px;
+          line-height: 33px;
+          text-align: center;
+          background: rgba(41, 44, 45, 0.9);
+          border-radius: 10px; }
+          .header .set .ucenter .u_name p a {
+            display: block; }
+    .header .set .search {
+      width: 500px;
+      margin: 0 auto;
+      padding-top: 46px; }
+      .header .set .search .box {
+        position: relative;
+        padding-right: 106px; }
+      .header .set .search .btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 106px;
+        height: 42px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+        background: #ff2c72;
+        cursor: pointer; }
+        .header .set .search .btn .icon-sousuo {
+          display: inline-block;
+          font-size: 20px;
+          vertical-align: middle;
+          padding-right: 2px;
+          margin-top: -2px; }
+      .header .set .search .text {
+        width: 98%;
+        padding-left: 2%;
+        height: 40px;
+        line-height: 40px;
+        font-size: 14px;
+        outline: none;
+        color: #fff;
+        border: 1px solid #ff2c72;
+        background-color: transparent; }
+      .header .set .search .list {
+        position: absolute;
+        top: 40px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border: 1px solid #ff2c72; }
+        .header .set .search .list .s_hot {
+          padding: 6px 0;
+          font-size: 14px;
+          color: #666;
+          text-align: center;
+          border-bottom: 1px solid #ccc; }
+        .header .set .search .list a {
+          display: block;
+          padding-left: 10px;
+          line-height: 28px; }
+          .header .set .search .list a:hover {
+            color: #ff2c72;
+            background: #f1f1f1; }
+
+.navbox {
+  line-height: 35px;
+  border-top: 1px solid #4c4d4e;
+  background: #1f2122; }
+  .navbox li {
+    float: left;
+    margin-right: 16px; }
+    .navbox li a {
+      display: block;
+      padding: 0 20px;
+      color: #fff; }
+      .navbox li a:hover {
+        background: #ff2c72; }
+
+.slide {
+  position: relative;
+  margin-top: 70px; }
+  .slide .slide-img {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden; }
+  .slide .slide-title {
+    position: absolute;
+    top: 25px;
+    right: 50%;
+    width: 240px;
+    margin-right: -618px;
+    background-color: rgba(255, 255, 255, 0.75);
+    z-index: 1; }
+    .slide .slide-title ul {
+      line-height: 34px; }
+      .slide .slide-title ul a {
+        display: block;
+        padding: 0 10px; }
+        .slide .slide-title ul a.hover, .slide .slide-title ul a.cur {
+          color: #fff;
+          background-color: #ff920b; }
+  .slide .mask {
+    position: absolute;
+    width: 1220px;
+    padding: 8px 8px 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -618px;
+    background-color: rgba(255, 255, 255, 0.15); }
+    .slide .mask .mask-intro {
+      display: block;
+      width: 100%;
+      height: 100px;
+      background: -webkit-linear-gradient(bottom, white, rgba(255, 255, 255, 0.5)); }
