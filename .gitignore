@@ -7,7 +7,7 @@ yarn-error.log*
 /test/unit/coverage/
 /test/e2e/reports/
 selenium-debug.log
-.code-workspace
+config.code-workspace
 
 # Editor directories and files
 .idea
@@ -18,3 +18,5 @@ selenium-debug.log
 *.sln
 /*.ppk
 *.ppk
+*.code-workspace
+/*.code-workspace
