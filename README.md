@@ -65,17 +65,16 @@
 
 
 ## 接口地址
-> 首页接口：
-http://shop.yinyuetai.com/shopRec/list.json
-rec_id: 7  //轮播图
-rec_id: 2  //追星必备
-rec_id: 4  //爆款周边
-http://shop.yinyuetai.com/goods/publish.json?max_count=6  //新品首发
-http://shop.yinyuetai.com/goods/listForGood.json?order_snum=true&max_count=8  //top榜-商品
-http://shop.yinyuetai.com/goods/listForArt.json?group_art=true&order_snum=true&max_count=8  //top榜-专辑
-http://shop.yinyuetai.com/search/goods.json   pageNum=1&pageSize=6  // 大家喜欢
-
-http://shop.yinyuetai.com/favorites/add.json  添加喜欢
+- 首页接口：
+> http://shop.yinyuetai.com/shopRec/list.json <br>
+rec_id: 7  //轮播图<br>
+rec_id: 2  //追星必备<br>
+rec_id: 4  //爆款周边<br>
+http://shop.yinyuetai.com/goods/publish.json?max_count=6  //新品首发<br>
+http://shop.yinyuetai.com/goods/listForGood.json?order_snum=true&max_count=8  //top榜-商品<br>
+http://shop.yinyuetai.com/goods/listForArt.json?group_art=true&order_snum=true&max_count=8  //top榜-专辑<br>
+http://shop.yinyuetai.com/search/goods.json   pageNum=1&pageSize=6  // 大家喜欢<br>
+http://shop.yinyuetai.com/favorites/add.json  添加喜欢<br>
 
 
 
