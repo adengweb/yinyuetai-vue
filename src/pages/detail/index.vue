@@ -5,11 +5,6 @@
       <div class="slide">
         <swiper :options="swiperOption" ref="mySwiper">
           <swiper-slide v-for="(item,index) in detailData.descImages" :key="index"><img :src="item.thumbUrl" alt=""></swiper-slide>
-          <div class="swiper-pagination" slot="pagination">
-            <span v-for="(item,index) in detailData.descImages" :key="index">
-              <img :src="item.thumbUrl" alt="">
-            </span>
-          </div>
           <div class="swiper-button-prev swiper-button-black" slot="button-prev"></div>
           <div class="swiper-button-next swiper-button-black" slot="button-next"></div>
         </swiper>
@@ -25,17 +20,14 @@
             <dt>颜色</dt>
             <dd>
               <div class="u_type">
-                <a href="javascript:;" v-for="(colorItem,index) in detailData.propFieldModels[0].propPriceModels" :key="index">{{colorItem.name}}</a>
+                <a href="javascript:;" v-for="(colorItem,index) in datailColorData" :key="index">{{colorItem.name}}</a>
               </div>
             </dd>
           </dl>
           <dl>
-            <dt>尺码</dt>
+            <dt>尺寸</dt>
             <dd><div class="u_type">
-              <a href="javascript:;" v-for="(fieItem,index) in detailData.propFieldModels[1].propPriceModels" :key="index">{{fieItem.name}}</a>
-              <!-- <a href="#" class="cur">M</a>
-              <a href="#">L</a>
-              <a href="#">XL</a> -->
+              <a href="javascript:;" v-for="(sizeItem,kindex) in detailSizeData" :key="kindex">{{sizeItem.name}}</a>
             </div></dd>
           </dl>
           <dl>
@@ -78,14 +70,13 @@ export default {
       count: 1,
       goodsId: this.$route.query.goodsId,
       detailData: {},
+      datailColorData: [],
+      detailSizeData: [],
       swiperOption: {
         effect: 'coverflow',
         autoplay: {
           delay: 2500,
           disableOnInteraction: false
-        },
-        pagination: {
-          el: '.swiper-pagination'
         },
         navigation: {
           nextEl: '.swiper-button-next',
@@ -98,6 +89,8 @@ export default {
     _getDetailDate () {
       this.$jsonp('http://shop.yinyuetai.com/goods/detail.json', {goodsId: this.goodsId}).then(res => {
         this.detailData = res.data
+        this.datailColorData = this.detailData.propFieldModels[0].propPriceModels
+        this.detailSizeData = this.detailData.propFieldModels[1].propPriceModels
       })
     }
   },

@@ -8,16 +8,16 @@ import Index from '@/pages/index'
 import Albums from '@/pages/albums/index'
 
 // 明星周边
-// import Surround from '@/pages/surround'
+import Surround from '@/pages/surround'
 
 // 明星同款
-// import Fashion from '@/pages/fashion'
+import Fashion from '@/pages/fashion'
 
 // 个护美妆
-// import Makeup from '@/pages/makeup'
+import Makeup from '@/pages/makeup'
 
 // 影漫周边
-// import Digit from '@/pages/digit'
+import Digit from '@/pages/digit'
 
 // 常见问题
 import Faq from '@/pages/faq/index'
@@ -48,6 +48,22 @@ export default new Router({
     {
       path: '/albums',
       component: Albums
+    },
+    {
+      path: '/surround',
+      component: Surround
+    },
+    {
+      path: '/fashion',
+      component: Fashion
+    },
+    {
+      path: '/makeup',
+      component: Makeup
+    },
+    {
+      path: '/digit',
+      component: Digit
     },
     {
       path: '/faq',
