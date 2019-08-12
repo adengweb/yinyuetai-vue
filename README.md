@@ -50,7 +50,7 @@
 > devDependencies下记录的是项目在开发过程中使用的插件，例如我们开发过程中需要使用webpack打包，而我在工作中使用fis3打包，但是一旦项目打包发布、上线了之后，webpack和fis3就都没有用了，可卸磨杀驴。
 
 - vue项目中正确添加swiper组件
-> https://blog.csdn.net/cxwtsh123/article/details/79468146
+> https://blog.csdn.net/u011663332/article/details/83790303
 
 - 针对优先级最高Css设置 /deep/
 > /deep/ .swiper-button-next{

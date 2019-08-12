@@ -255,13 +255,13 @@ export default {
         height: 398px;
       }
     }
-    /depp/ .swiper-pagination{
+    .swiper-pagination{
       bottom: 20px;
     }
-    /deep/ .swiper-button-prev{
+    .swiper-button-prev{
       left: 20px;
     }
-    /deep/ .swiper-button-next{
+    .swiper-button-next{
       right: 20px;
     }
   }
@@ -269,7 +269,7 @@ export default {
   .starchaser {
     float: left;
     width: 870px;
-    /deep/ .swiper-container-horizontal{
+    .swiper-container-horizontal{
       height: 136px;
       &>.swiper-pagination-bullets{
         bottom: 0px;
