@@ -3,33 +3,33 @@
     <div class="crumb"><a href="/">首页</a> > {{detailData.title}}</div>
     <div class="item-box clearfix">
       <div class="slide">
-        <swiper :options="swiperOption" ref="mySwiper">
-          <swiper-slide v-for="(item,index) in detailData.descImages" :key="index"><img :src="item.thumbUrl" alt=""></swiper-slide>
-          <div class="swiper-button-prev swiper-button-black" slot="button-prev"></div>
-          <div class="swiper-button-next swiper-button-black" slot="button-next"></div>
-        </swiper>
+        <el-carousel height="418px" :interval="3000" arrow="hover">
+          <el-carousel-item v-for="(item, index) in detailData.descImages" :key="index">
+            <img :src="item.thumbUrl" alt="item.title1">
+          </el-carousel-item>
+        </el-carousel>
       </div>
       <div class="item-params">
         <h3>{{detailData.title}}</h3>
         <div class="select-box">
+          <dl v-if="detailData.artistName">
+            <dt>艺人</dt>
+            <dd><p>{{detailData.artistName}}</p></dd>
+          </dl>
           <dl class="c_price">
             <dt>商城价格</dt>
             <dd><span>￥{{detailData.price}}</span> <del>¥{{detailData.originalPrice}}</del></dd>
           </dl>
-          <dl>
-            <dt>颜色</dt>
-            <dd>
-              <div class="u_type">
-                <a href="javascript:;" v-for="(colorItem,index) in datailColorData" :key="index">{{colorItem.name}}</a>
-              </div>
-            </dd>
-          </dl>
-          <dl>
-            <dt>尺寸</dt>
-            <dd><div class="u_type">
-              <a href="javascript:;" v-for="(sizeItem,kindex) in detailSizeData" :key="kindex">{{sizeItem.name}}</a>
-            </div></dd>
-          </dl>
+          <div v-if="modelsData">
+            <dl v-for="(item, index) in modelsData" :key="index">
+              <dt>{{item.name}}</dt>
+              <dd>
+                <div class="u_type">
+                  <a href="javascript:;" v-for="(models, mindex) in item.propPriceModels" :key="mindex">{{models.name}}</a>
+                </div>
+              </dd>
+            </dl>
+          </div>
           <dl>
             <dt>数量</dt>
             <dd>
@@ -43,7 +43,7 @@
           </dl>
           <dl>
             <dt>销量</dt>
-            <dd><p>{{detailData.limitCount}}件</p></dd>
+            <dd><p>{{detailData.sellNum}}件</p></dd>
           </dl>
         </div>
         <div class="btns">
@@ -61,46 +61,31 @@
   </div>
 </template>
 <script>
-import {swiper, swiperSlide} from 'vue-awesome-swiper'
 import fixedTool from '../../components/fixed-tool'
 export default {
   name: 'Detail',
   data () {
     return {
       count: 1,
-      goodsId: this.$route.query.goodsId,
+      goodsId: this.$route.params.id,
       detailData: {},
-      datailColorData: [],
-      detailSizeData: [],
-      swiperOption: {
-        effect: 'coverflow',
-        autoplay: {
-          delay: 2500,
-          disableOnInteraction: false
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
-      }
-    }
-  },
-  methods: {
-    _getDetailDate () {
-      this.$jsonp('http://shop.yinyuetai.com/goods/detail.json', {goodsId: this.goodsId}).then(res => {
-        this.detailData = res.data
-        this.datailColorData = this.detailData.propFieldModels[0].propPriceModels
-        this.detailSizeData = this.detailData.propFieldModels[1].propPriceModels
-      })
+      modelsData: []
     }
   },
   mounted () {
     this._getDetailDate()
   },
+  methods: {
+    _getDetailDate () {
+      this.$jsonp('http://shop.yinyuetai.com/goods/detail.json', {goodsId: this.goodsId}).then(res => {
+        console.log(res.data)
+        this.detailData = res.data
+        this.modelsData = this.detailData.propFieldModels
+      })
+    }
+  },
   components: {
-    fixedTool,
-    swiper,
-    swiperSlide
+    fixedTool
   }
 }
 </script>
@@ -254,10 +239,22 @@ export default {
   .item-detail{
     padding-top: 26px;
     .title{
-      font-size: 16px;
-      color: #f52a6e;
-      padding-bottom: 12px;
+      position: relative;
+      font-size: 21px;
+      line-height: 50px;
+      padding-left: 60px;
+      color: #fff;
+      margin-bottom: 12px;
+      background: #f52a6e;
       border-bottom: 2px solid #f52a6e;
+      overflow: hidden;
+      .iconfont{
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size:40px;
+        opacity: .5;
+      }
     }
     .detail-box{
       padding: 20px 0;

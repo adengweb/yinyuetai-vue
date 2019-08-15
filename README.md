@@ -4,11 +4,11 @@
 > 音悦商城是音悦台为粉丝提供的官方周边商品购买平台，涉及的商品类别包括：专辑、周边、化妆品、数码产品、明星同款。<br><br>
 > 提供了首页数据展示，购物车状态管理，个人中心，订单中心状态模块
 
--  它使用了最新的前端技术栈，Vue-cli(脚手架)，webpack(文件打包)，routes(动态路由)，Vuex(页面状态管理)。提供了丰富的功能组件。
+-  它使用了最新的前端技术栈，Vue-cli(脚手架)，element-UI，routes(动态路由)，Vuex(页面状态管理)。提供了丰富的功能组件。
 -  使用axios来处理数据提交（Get、Post）;
--  vue-swiper 实现图片轮播
 -  vue-lazyload 实现图片懒加载
 -  使用了Scss为css的处理语言，使用了[阿里巴巴图标库](https://www.iconfont.cn/)制作图标。
+-  svg-sprite-loader矢量图标
 
  
 ## 使用帮助：
@@ -60,6 +60,10 @@
 - vue-lazyload图片懒加载
 > https://juejin.im/entry/57b5c3585bbb50006305becb
 > https://segmentfault.com/a/1190000014928116
+
+- Vue项目中svg图标不能正常显示
+> http://www.mamicode.com/info-detail-2642781.html
+> https://blog.csdn.net/quangezai666/article/details/78962616
 
 
 

@@ -2,12 +2,11 @@
   <div id="index">
     <div class="w mod-index">
       <div class="banneBox">
-        <swiper :options="swiperOption" ref="mySwiper">
-          <swiper-slide v-for="(item,index) in swiperData" :key="index"><img :src="item.image1" alt=""></swiper-slide>
-          <div class="swiper-pagination"  slot="pagination"></div>
-          <div class="swiper-button-prev swiper-button-black" slot="button-prev"></div>
-          <div class="swiper-button-next swiper-button-black" slot="button-next"></div>
-        </swiper>
+        <el-carousel height="398px" :interval="3000" arrow="always">
+          <el-carousel-item v-for="(item, index) in swiperData" :key="index">
+            <img :src="item.image1" :alt="item.title1">
+          </el-carousel-item>
+        </el-carousel>
       </div>
       <div class="w clearfix">
         <div class="starchaser">
@@ -62,7 +61,7 @@
         <div class="list clearfix">
           <template v-if="newData.length > 0">
           <div class="item" v-for="(items,index) in newData" :key="index">
-            <router-link :to="{path:'/Detail',query:{goodsId:3786}}">
+            <a href="javascript:;" @click="goDetail(items.goodsId)">
               <div class="pic">
                 <img v-lazy="items.imgUrl" :alt="items.goodsName">
               </div>
@@ -70,27 +69,27 @@
                 <h4>{{items.goodsName}}</h4>
                 <p class="price">¥{{items.realPrice}}</p>
                 <p class="like">
-                  <span @click="HladLike(items.goodsId)">{{items.faveNum}}</span>
+                  <span @click.stop="HladLike(items.goodsId)">{{items.faveNum}}</span>
                 </p>
               </div>
-            </router-link>
+            </a>
           </div>
           </template>
           <loadingText v-else></loadingText>
         </div>
       </div>
       <div class="love">
-        <div class="title"><div class="text">大家喜欢<span @click="refresh" class="refresh">刷新</span></div></div>
+        <div class="title"><div class="text">服装配饰<span @click="refresh" class="refresh">刷新</span></div></div>
         <div class="list clearfix">
           <template v-if="likeData.length > 0">
           <div class="item" v-for="(item,index) in likeData" :key="index">
-            <a :chref="'http://shop.yinyuetai.com/detail.action?goodsId='+item.id+''">
+            <a href="javascript:;" @click="goDetail(item.id)">
               <img :alt="item.name" :src="item.headImg">
               <h4>{{item.name}}</h4>
               <div class="info">
                 <p class="price">¥{{item.price}}</p>
                 <p class="like">
-                  <span @click="HladLike(item.id)">{{item.favoNum}}</span>
+                  <span @click.stop="HladLike(item.id)">{{item.favoNum}}</span>
                 </p>
               </div>
             </a>
@@ -104,8 +103,9 @@
   </div>
 </template>
 <script>
-import fixedTool from '../components/fixed-tool'
 import {swiper, swiperSlide} from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
+import fixedTool from '../components/fixed-tool'
 import loadingText from '../components/loadingtext'
 export default {
   name: 'index',
@@ -119,20 +119,6 @@ export default {
       likeData: [],
       PageNum: 1,
       isHasType: 1,
-      swiperOption: {
-        effect: 'coverflow',
-        autoplay: {
-          delay: 2500,
-          disableOnInteraction: false
-        },
-        pagination: {
-          el: '.swiper-pagination'
-        },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
-      },
       starchaserOption: {
         slidesPerView: 4,
         pagination: {
@@ -140,6 +126,14 @@ export default {
         }
       }
     }
+  },
+  mounted () {
+    this._getSwiperData()
+    this._getStarchaserData()
+    this._getHotStarData()
+    this._getHotProductData()
+    this._getNewData()
+    this._getLikeData()
   },
   methods: {
     _getSwiperData () {
@@ -165,6 +159,7 @@ export default {
     },
     _getLikeData () {
       let _data = {
+        bannerType: 'clothes',
         pageNum: this.PageNum,
         pageSize: 10
       }
@@ -188,7 +183,20 @@ export default {
         console.log(err)
       })
     },
-    HladLike (val) {},
+    goDetail (id) {
+      this.$router.push({path: '/detail/' + id + ''})
+    },
+    HladLike (id) {
+      this.$http.Post('/api/addLike', {id: id}).then(res => {
+        this.$message({
+          message: res.data.msg,
+          type: 'success',
+          center: true
+        })
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     _getHotStarData () {
       let _params = {
         group_art: true,
@@ -220,14 +228,6 @@ export default {
       }
     }
   },
-  mounted () {
-    this._getSwiperData()
-    this._getStarchaserData()
-    this._getHotStarData()
-    this._getHotProductData()
-    this._getNewData()
-    this._getLikeData()
-  },
   components: {
     fixedTool,
     loadingText,
@@ -249,7 +249,12 @@ export default {
   }
 
   .banneBox{
-    .swiper-slide{
+    .el-carousel__arrow--right{
+      width: 40px;
+      height: 60px;
+      background: #f00;
+    }
+    .el-carousel__item.is-animating{
       img{
         width: 100%;
         height: 398px;

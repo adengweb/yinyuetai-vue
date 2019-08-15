@@ -1,66 +1,70 @@
 <template>
-  <div id="header">
-    <div class="header">
-      <div class="w set">
-        <h1><a :href="baseInfo.url"><img :src="baseInfo.imgurl" :alt="baseInfo.title" :title="baseInfo.title"></a></h1>
-        <div class="search">
-            <div class="box">
-              <input type="text" class="text" v-model="searchVaule" @focus="handleFocus" @blur="handleBlur" @keyup="keyUpSearch(searchVaule)" placeholder="搜索偶像、商品">
-              <a class="btn" @click="getSearch(searchVaule)">搜索</a>
-              <ul class="list" v-show="focused">
-                <li class="s_hot">热门搜索</li>
-                <li v-if="searchList.length === 0" class="none">暂无搜索内容</li>
-                <li v-for="(item,index) in searchList" :key="index"><a :chref="item.catType == 1 ? 'https://sz.chexiu.com/search/list-'+item.cat_id+'-0-0-0-0-0-0-1.html' : 'https://sz.chexiu.com/style/'+item.cat_id+'.html'">{{item.title}}</a></li>
-              </ul>
-            </div>
+  <div>
+    <div id="header">
+      <div class="header">
+        <div class="w set">
+          <h1><a :href="baseInfo.url"><img :src="baseInfo.imgurl" :alt="baseInfo.title" :title="baseInfo.title"></a></h1>
+          <div class="search">
+              <div class="box">
+                <input type="text" class="text" v-model="searchVaule" @focus="handleFocus" @blur="handleBlur" @keyup="keyUpSearch(searchVaule)" placeholder="搜索偶像、商品">
+                <a class="btn" @click="getSearch(searchVaule)">搜索</a>
+                <ul class="list" v-show="focused">
+                  <li class="s_hot">热门搜索</li>
+                  <li v-if="searchList.length === 0" class="none">暂无搜索内容</li>
+                  <li v-for="(item,index) in searchList" :key="index"><a :chref="item.catType == 1 ? 'https://sz.chexiu.com/search/list-'+item.cat_id+'-0-0-0-0-0-0-1.html' : 'https://sz.chexiu.com/style/'+item.cat_id+'.html'">{{item.title}}</a></li>
+                </ul>
+              </div>
+          </div>
+          <template v-if="isLogin">
+          <div class="ucenter">
+            <span class="u_name" @mousemove="mousemoveMenu">
+              <img :src="userInfo.avatarUrl" :alt="userInfo.name" class="avatar">
+              {{userInfo.name}}
+              <icon name="unfold" @mouseout="mouseoutMenu"></icon>
+              <div class="tier" v-show="isHasMenu" @mouseout="mouseoutMenu">
+                <router-link to='/ucenter'>个人中心</router-link>
+                <router-link to='/like'>我喜欢的</router-link>
+                <a @click="outLoagin">退出</a>
+              </div>
+            </span>
+            <router-link to='/order'>我的订单</router-link>
+            <router-link to='/cart'><icon name="buycar"></icon>购物车</router-link>
+          </div>
+          </template>
+          <template v-else>
+          <div class="ucenter">
+            <a href="javascript:;" @click="LoaginPop"><icon name="user"></icon>登录</a>
+            <router-link to='/order'>我的订单</router-link>
+            <router-link to='/cart'><icon name="buycar"></icon>购物车</router-link>
+          </div>
+          </template>
         </div>
-        <template v-if="isLogin">
-        <div class="ucenter">
-          <span class="u_name" @mousemove="mousemoveMenu">
-            <img :src="userInfo.avatarUrl" :alt="userInfo.name" class="avatar">
-            {{userInfo.name}}
-            <b class="iconfont icon-unfold" @mouseout="mouseoutMenu"></b>
-            <div class="tier" v-show="isHasMenu" @mouseout="mouseoutMenu">
-              <router-link to='/ucenter'>个人中心</router-link>
-              <router-link to='/like'>我喜欢的</router-link>
-              <a @click="outLoagin">退出</a>
-            </div>
-          </span>
-          <router-link to='/order'><i class="iconfont icon-erweima"></i>我的订单</router-link>
-          <router-link to='/cart'><i class="iconfont icon-tongyong"></i>购物车</router-link>
+        <div class="navbox">
+          <ul class="w clearfix">
+            <li><router-link to='/index' :class="{'active':$route.meta.active === '/index'}">首页</router-link></li>
+            <li><router-link to='/albums'>专辑</router-link></li>
+            <li><router-link to='/surround'>明星周边</router-link></li>
+            <li><router-link to='/fashion'>明星同款</router-link></li>
+            <li><router-link to='/makeup'>个护美妆</router-link></li>
+            <li><router-link to='/digit'>影漫周边</router-link></li>
+          </ul>
         </div>
-        </template>
-        <template v-else>
-        <div class="ucenter">
-          <a href="javascript:;" @click="LoaginPop"><i class="iconfont icon-grzx"></i>登录</a>
-          <router-link to='/order'><i class="iconfont icon-erweima"></i>我的订单</router-link>
-          <router-link to='/cart'><i class="iconfont icon-tongyong"></i>购物车</router-link>
-        </div>
-        </template>
-      </div>
-      <div class="navbox">
-        <ul class="w clearfix">
-          <li><router-link to='/index' :class="{'active':$route.meta.active === '/index'}">首页</router-link></li>
-          <li><router-link to='/albums'>专辑</router-link></li>
-          <li><router-link to='/surround'>明星周边</router-link></li>
-          <li><router-link to='/fashion'>明星同款</router-link></li>
-          <li><router-link to='/makeup'>个护美妆</router-link></li>
-          <li><router-link to='/digit'>影漫周边</router-link></li>
-        </ul>
       </div>
     </div>
-    <div class="loginPop" v-show="isLoginShow">
-      <div class="title">用户登录<span class="close" @click="closeLoginPop">x</span></div>
-      <ul>
-        <li><span>用户名：</span><input type="text" v-model="UserName" placeholder="请输入用户名"></li>
-        <li><span>密码：</span><input type="password" v-model="password" minlength="6" placeholder="请输入密码"></li>
-        <li class="btn"><a href="javascript:;" @click="login">登录</a></li>
-      </ul>
+    <div class="loginLayer" v-show="isLoginShow">
+      <div class="loginPop">
+        <div class="title">用户登录<span class="close" @click="closeLoginPop">x</span></div>
+        <icon name="user"></icon>
+        <ul>
+          <li class="user"><icon name="user"></icon><input type="text" v-model="UserName" placeholder="请输入用户名"></li>
+          <li class="pass"><icon name="password"></icon><input type="password" v-model="password" minlength="6" placeholder="请输入密码"></li>
+          <li class="btn"><a href="javascript:;" @click="login">登录</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 <script>
-import cookie from 'js-cookie'
 export default {
   data () {
     return {
@@ -112,13 +116,13 @@ export default {
       this.isHasMenu = false
     },
     outLoagin () { // 登出
-      this.isLogin = false
+      this.isLogin = !this.isLogin
     },
     LoaginPop () {
-      this.isLoginShow = true
+      this.isLoginShow = !this.isLoginShow
     },
     closeLoginPop () {
-      this.isLoginShow = false
+      this.isLoginShow = !this.isLoginShow
     },
     login () {
       if (this.UserName === '') {
@@ -129,9 +133,22 @@ export default {
         alert('密码不能为空~')
         return
       }
-      cookie.set('username', this.UserName, 7)
+      let _data = {
+        UserName: this.UserName,
+        password: this.password
+      }
+      this.$http.Post('/api/login', _data).then(res => {
+        this.$message({
+          message: res.data.msg,
+          type: 'success',
+          center: true
+        })
+        this.isLogin = !this.isLogin
+        this.isLoginShow = !this.isLoginShow
+      }).catch(err => {
+        console.log(err)
+      })
     }
-
   }
 }
 </script>
@@ -141,7 +158,7 @@ export default {
   position: relative;
   color: #fff;
   background: #1f2122;
-  z-index: 2;
+  z-index: 60;
   .set{
     position: relative;
     height:126px;
@@ -158,8 +175,11 @@ export default {
         padding: 2px 6px;
         margin-left: 6px;
         color: #fff;
-        .iconfont{
+        .svg-icon{
           padding-right: 3px;
+          width: 20px;
+          height: 20px;
+          margin-top: -6px;
         }
         &:hover{
           color: #52e2c0;
@@ -178,9 +198,17 @@ export default {
         vertical-align: middle;
         margin-top: -5px;
         .icon-unfold{
+          width: 18px;
+          height: 20px;
           vertical-align: middle;
           color: #ff2c72;
         }
+        // &:hover{
+        //   .icon-unfold{
+        //     animation:.5s linear;
+        //     transform:rotate(180deg);
+        //   }
+        // }
         .tier{
           position: absolute;
           left: 0;
@@ -285,57 +313,85 @@ export default {
     }
   }
 }
-.loginPop{
+.loginLayer{
   position: fixed;
-  top: 30%;
-  left: 50%;
-  width: 500px;
-  margin-left: -250px;
-  padding-bottom: 40px;
-  z-index: 99;
-  background:#fff;
-  background-image: linear-gradient(to bottom , #adf1bc, #ddecc9);
-  box-shadow: 2px 2px 5px rgba(0,0,0,.5);
-  .title{
-    padding: 16px 0;
-    font-size: 16px;
-    text-align: center;
-    .close{
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 88;
+  background: rgba(0,0,0,.5);
+  .loginPop{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    width: 500px;
+    margin-left: -250px;
+    padding-bottom: 40px;
+    z-index: 99;
+    background:#fff;
+    background-image: linear-gradient(to bottom , #f5fdea, #ddecc9);
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    overflow: hidden;
+    >.icon-user{
       position: absolute;
-      right: 0;
-      top: 0;
-      padding: 6px 12px;
-      cursor: pointer;
-      display: block;
+      top: -50px;
+      left: -50px;
+      width: 260px;
+      fill: #dceaa9;
+      opacity: .5;
     }
-  }
-  ul{
-    padding:0 100px;
-    li{
-      padding: 8px 0;
-      span{
-        width: 70px;
-        padding-right: 6px;
-        display: inline-block;
-        text-align: right;
+    .title{
+      padding: 16px 0;
+      font-size: 21px;
+      text-align: center;
+      .close{
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 18px;
+        padding: 6px 12px;
+        cursor: pointer;
+        display: block;
       }
-      &.btn{
-        padding-left: 65px;
-        a{
-          display: block;
-          width: 90%;
-          line-height: 36px;
-          text-align: center;
-          margin: 0 auto;
-          color: #fff;
-          background: #ff2c72;
+    }
+    ul{
+      padding:0 100px;
+      li{
+        position: relative;
+        padding: 8px 0;
+        .svg-icon{
+          position: absolute;
+          left: 8px;
+          top: 18px;
+          width: 24px;
+          height: 24px;
+          fill: #999;
+        }
+        &.btn{
+          a{
+            display: block;
+            width: 100%;
+            line-height: 42px;
+            font-size: 18px;
+            text-align: center;
+            margin: 0 auto;
+            color: #fff;
+            background: #ff2c72;
+            &:hover{
+              opacity: .9;
+            }
+          }
         }
       }
-    }
-    input{
-      padding: 6px 5px;
-      width: 70%;
-      border: 1px solid #ccc;
+      input{
+        padding: 12px 40px;
+        width: 100%;
+        font-size: 14px;
+        outline: none;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+      }
     }
   }
 }
