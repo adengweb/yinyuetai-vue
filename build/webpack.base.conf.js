@@ -60,14 +60,6 @@ module.exports = {
         }
       },
       {
-        test: /\.svg$/,
-        loader: 'svg-sprite-loader',
-        include:[resolve('src/assets/icons')],
-        options: {
-          symbolId: 'icon-[name]'
-        }
-      },
-      {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {

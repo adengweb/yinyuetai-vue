@@ -67,7 +67,6 @@ export default {
   data () {
     return {
       count: 1,
-      goodsId: this.$route.params.id,
       detailData: {},
       modelsData: []
     }
@@ -77,7 +76,7 @@ export default {
   },
   methods: {
     _getDetailDate () {
-      this.$jsonp('http://shop.yinyuetai.com/goods/detail.json', {goodsId: this.goodsId}).then(res => {
+      this.$jsonp('http://shop.yinyuetai.com/goods/detail.json', {goodsId: this.$route.params.id}).then(res => {
         console.log(res.data)
         this.detailData = res.data
         this.modelsData = this.detailData.propFieldModels

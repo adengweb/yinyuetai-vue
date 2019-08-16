@@ -6,19 +6,8 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {
-      //axios域代理，解决axios跨域问题
-      '/api': {
-        target: 'http://localhost'//开发环境地质
-        // ,pathRewrite: {
-        //   '^/api': '/src/api/' //路径重写
-        // }
-      }
-    },
-
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
