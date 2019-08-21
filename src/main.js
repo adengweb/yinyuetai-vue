@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import http from './common/js/http'
+import http from './utlis/http'
 import store from './store'
 import vuejsonp from 'vue-jsonp'
 import VueLazyload from 'vue-lazyload'
@@ -23,7 +23,7 @@ require('@/mock/index.js')
 
 // 设置导航卫士来判断是否登录
 router.beforeEach((to, from, next) => {
-  console.log(store.state.token)
+  // console.log(store.getters)
   next()
 })
 

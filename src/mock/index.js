@@ -10,10 +10,10 @@ Mock.setup({
 
 // 公用接口
 Mock.mock('/api/login', 'post', function () {
-  // let arr = prarms.body
-  // let token = arr.split('&')[0].split('=')[1]
-  // localStorage.setItem('userToken', token)
-  return {code: 200, msg: '登录成功', token: 'token-adeng.y'}
+  return {code: 200, msg: '登录成功', token: 'user-token', username: 'adeng.y', avatarUrl: '//avatars2.githubusercontent.com/u/5827625?s=60&v=4'}
+})
+Mock.mock('/api/user-info', function () {
+  return {code: 200, msg: '', username: 'adeng.y', avatarUrl: '//avatars2.githubusercontent.com/u/5827625?s=60&v=4'}
 })
 Mock.mock('/api/addLike', 'post', {
   'msg': '喜欢成功'

@@ -7,11 +7,11 @@ export default {
     return Mock.mock({
       'list|10': [
         {
-          'id|+1': 1,
-          'date': Random.date(),
-          'title': '@ctitle(12, 30)',
-          'subTitle': '@cparagraph(12, 16)',
-          'image': Random.image('400x300', '#02adea', 'Hello Mock.js')
+          'id|+1': () => Random.integer(20, 100),
+          'date': () => Random.date(),
+          'title': () => Random.ctitle(12, 40),
+          'subTitle': () => Random.cparagraph(12, 16),
+          'image': () => Random.image('400x300', '#02adea', 'Hello Mock.js')
         }
       ]
     })

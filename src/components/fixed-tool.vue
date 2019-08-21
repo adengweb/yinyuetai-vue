@@ -1,7 +1,7 @@
 <template>
   <div class="mod-fixed-tool">
     <ul>
-      <li class="i-buy"><router-link to="/cart">购物车<span class="tip">2</span></router-link></li>
+      <li class="i-buy"><router-link to="/cart">购物车<span class="tip">{{this.$store.state.buyNum}}</span></router-link></li>
       <li class="i-faq"><router-link to="/faq">常见问题</router-link></li>
       <li class="i-github"><a href="https://github.com/adengweb" target="_blank">Github</a></li>
       <li class="i-gotop"><a href="javascript:;" @click="gotoTop">返回顶部</a></li>

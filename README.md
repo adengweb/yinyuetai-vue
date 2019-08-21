@@ -41,10 +41,10 @@
 - 启动服务的时候如果报node-sass请看：[Vue中使用node-sass报错的解决方法](https://adeng.vip/index.php/article/39.html)
 
 - 在下载sass依赖
-  cnpm install sass sass-loader node-sass --save-dev
+>  cnpm install sass sass-loader node-sass --save-dev
 
 - 全局设置cnpm淘宝镜像
-  $ npm install -g cnpm --registry=https://registry.npm.taobao.org
+>  $ npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 
 ## 项目中遇到的问题

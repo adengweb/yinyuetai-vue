@@ -130,49 +130,5 @@
     </div>
   </div>
 </template>
-<style lang="scss" scoped>
-.crumb{
-	padding-top: 30px;
-	padding-bottom: 15px;
-}
-.mod-u{
-	padding-bottom: 30px;
-	.menu{
-		float: left;
-		width: 200px;
-		padding-top: 120px;
-		background: #52e2c0 url('../img/shop-logo-v1.png') no-repeat 50% 20px;
-		ul{
-			background: rgba(255, 255, 255, 0.38);
-		}
-		a{
-			display: block;
-			font-size: 15px;
-			line-height:45px;
-			color: #fff;
-			border-left: 3px solid #94EDD8;
-			border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-			.iconfont{
-				width: 22px;
-				height:22px;
-				font-size: 18px;
-				padding:0 8px 0 26px;
-				text-align: center;
-				line-height:22px;
-			}
-			&:hover,&.active{
-				background: #FF8BB1;
-				border-left: 3px solid #ff2c72;
-			}
-		}
-	}
-	.u-page{
-		padding-left: 230px;
-		.u-title{
-			font-size: 18px;
-			padding-bottom: 16px;
-		}
-	}
-}
-</style>
+<style lang="scss" scoped src="./order.scss"></style>
 

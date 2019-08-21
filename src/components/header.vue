@@ -18,8 +18,8 @@
           <template v-if="isLogin">
           <div class="ucenter">
             <span class="u_name" @mousemove="mousemoveMenu">
-              <img :src="userInfo.avatarUrl" :alt="userInfo.name" class="avatar">
-              {{userInfo.name}}
+              <img :src="userInfo1.avatarUrl" :alt="userInfo1.username" class="avatar">
+              {{userInfo1.username}}
               <icon name="unfold" @mouseout="mouseoutMenu"></icon>
               <div class="tier" v-show="isHasMenu" @mouseout="mouseoutMenu">
                 <router-link to='/ucenter'>个人中心</router-link>
@@ -56,8 +56,8 @@
         <div class="title">用户登录<span class="close" @click="closeLoginPop">x</span></div>
         <icon name="user"></icon>
         <ul>
-          <li class="user"><icon name="user"></icon><input type="text" v-model="UserName" placeholder="请输入用户名"></li>
-          <li class="pass"><icon name="password"></icon><input type="password" v-model="password" minlength="6" placeholder="请输入密码"></li>
+          <li class="user"><icon name="user"></icon><input type="text" v-model="userInfo.username" placeholder="请输入用户名"></li>
+          <li class="pass"><icon name="password"></icon><input type="password" v-model="userInfo.password" minlength="6" placeholder="请输入密码"></li>
           <li class="btn"><a href="javascript:;" @click="login">登录</a></li>
         </ul>
       </div>
@@ -65,6 +65,7 @@
   </div>
 </template>
 <script>
+import store from '@/store'
 export default {
   data () {
     return {
@@ -74,12 +75,14 @@ export default {
         title: '音悦商城'
       },
       searchList: [],
-      userInfo: {
-        name: '前端蜗牛',
-        avatarUrl: '//avatars2.githubusercontent.com/u/5827625?s=60&v=4'
+      userInfo1: {
+        username: '',
+        avatarUrl: ''
       },
-      UserName: '',
-      password: '',
+      userInfo: {
+        username: '',
+        password: ''
+      },
       searchVaule: '',
       focused: false,
       isLogin: false,
@@ -88,9 +91,41 @@ export default {
     }
   },
   created () {
-    // this._getSearchList()
+    this.getInfo()
   },
   methods: {
+    getInfo () {
+      let token = sessionStorage.getItem('token')
+      if (token) {
+        this.$http.Get('/api/user-info', { token: token }).then(res => {
+          this.userInfo1 = res.data
+          this.isLogin = true
+        }).catch(err => {
+          console.log(err)
+        })
+      } else {
+        console.log('TODU')
+      }
+    },
+    login () {
+      let that = this
+      if (this.userInfo.username === '') {
+        alert('用户名不能为空~')
+        return
+      }
+      if (this.userInfo.password === '') {
+        alert('密码不能为空~')
+        return
+      }
+      this.$http.Post('/api/login', that.userInfo).then(res => {
+        this.userInfo1 = res.data
+        store.commit('Mut_login', res.data)
+        this.isLogin = !this.isLogin
+        this.isLoginShow = !this.isLoginShow
+      }).catch(err => {
+        console.log(err)
+      })
+    },
     handleFocus (event) {
       this.focused = true
       this.$emit('focus', event)
@@ -123,32 +158,9 @@ export default {
     },
     closeLoginPop () {
       this.isLoginShow = !this.isLoginShow
-    },
-    login () {
-      if (this.UserName === '') {
-        alert('用户名不能为空~')
-        return
-      }
-      if (this.password === '') {
-        alert('密码不能为空~')
-        return
-      }
-      let _data = {
-        UserName: this.UserName,
-        password: this.password
-      }
-      this.$http.Post('/api/login', _data).then(res => {
-        this.$message({
-          message: res.data.msg,
-          type: 'success',
-          center: true
-        })
-        this.isLogin = !this.isLogin
-        this.isLoginShow = !this.isLoginShow
-      }).catch(err => {
-        console.log(err)
-      })
     }
+  },
+  computed: {
   }
 }
 </script>
