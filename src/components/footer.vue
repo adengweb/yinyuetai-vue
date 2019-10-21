@@ -3,7 +3,7 @@
     <div class="footer">
       <div class="w">
         <div class="link">
-          <a v-for="(item,index) in footMenu" :key="index" :href="item.link">{{item.title}}</a>
+          <a v-for="(item,key) in footMenu" :key="key" :href="item.link">{{item.title}}</a>
         </div>
         <div class="copy">
           Copyright © 2009 - 2016 yinyuetai.com 广播电视节目制作经营 许可证编号(京)字第1891号 | 京网文[2014]2037-287号 | 网络视听许可证0110413号

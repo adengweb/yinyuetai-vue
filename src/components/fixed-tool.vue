@@ -53,7 +53,7 @@ export default {
       display: block;
       padding: 40px 0 10px 0;
       color: #999;
-      background:#f1f1f1 url(https://cxstatic.img16888.com/dist/images/cherry/fixed-tool.png) no-repeat -112px 8px;
+      background: url(https://cxstatic.img16888.com/dist/images/cherry/fixed-tool.png) no-repeat -112px 8px;
       &:hover{
         color: #ff3034
       }
